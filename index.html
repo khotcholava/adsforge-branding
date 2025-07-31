@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AdCraft AI - AI-Powered Meta Ads Campaign Creation</title>
+    <meta
+      name="description"
+      content="Launch AI-generated Meta ad campaigns and landing pages in seconds. Describe your ad, upload creative, and go live — all from your phone."
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary: #007aff;
+        --secondary: #5856d6;
+        --success: #34c759;
+        --warning: #ff9500;
+        --error: #ff3b30;
+        --background: #ffffff;
+        --surface: #f2f2f7;
+        --text: #000000;
+        --text-secondary: #666666;
+        --border: #c6c6c8;
+      }
+
+      .gradient-bg {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+
+      .hero-gradient {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+
+      .card-hover {
+        transition: all 0.3s ease;
+      }
+
+      .card-hover:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+          0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      }
+
+      .demo-input {
+        border: 2px solid #e5e7eb;
+        transition: border-color 0.3s ease;
+      }
+
+      .demo-input:focus {
+        border-color: var(--primary);
+        outline: none;
+      }
+
+      .typing-animation {
+        overflow: hidden;
+        border-right: 2px solid var(--primary);
+        white-space: nowrap;
+        animation: typing 3.5s steps(40, end),
+          blink-caret 0.75s step-end infinite;
+      }
+
+      @keyframes typing {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+
+      @keyframes blink-caret {
+        from,
+        to {
+          border-color: transparent;
+        }
+        50% {
+          border-color: var(--primary);
+        }
+      }
+
+      .feature-icon {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+
+      /* Enhanced button styles */
+      .cta-button {
+        background: linear-gradient(135deg, var(--primary) 0%, #0056b3 100%);
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 15px rgba(0, 122, 255, 0.3);
+      }
+
+      .cta-button::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.5s;
+      }
+
+      .cta-button:hover::before {
+        left: 100%;
+      }
+
+      .cta-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 122, 255, 0.4);
+        background: linear-gradient(135deg, #0056b3 0%, var(--primary) 100%);
+      }
+
+      .cta-button:active {
+        transform: translateY(0);
+        box-shadow: 0 4px 15px rgba(0, 122, 255, 0.3);
+      }
+
+      .pulse-animation {
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(0, 122, 255, 0.7);
+        }
+        70% {
+          box-shadow: 0 0 0 10px rgba(0, 122, 255, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(0, 122, 255, 0);
+        }
+      }
+
+      .hero-cta-button {
+        background: linear-gradient(135deg, var(--primary) 0%, #0056b3 100%);
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 8px 25px rgba(0, 122, 255, 0.3);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+      }
+
+      .hero-cta-button::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          transparent
+        );
+        transition: left 0.6s;
+      }
+
+      .hero-cta-button:hover::before {
+        left: 100%;
+      }
+
+      .hero-cta-button:hover {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 12px 35px rgba(0, 122, 255, 0.5);
+        background: linear-gradient(135deg, #0056b3 0%, var(--primary) 100%);
+        border-color: rgba(255, 255, 255, 0.5);
+      }
+
+      .pricing-cta-button {
+        background: linear-gradient(135deg, var(--primary) 0%, #0056b3 100%);
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 15px rgba(0, 122, 255, 0.3);
+      }
+
+      .pricing-cta-button::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.5s;
+      }
+
+      .pricing-cta-button:hover::before {
+        left: 100%;
+      }
+
+      .pricing-cta-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 122, 255, 0.4);
+        background: linear-gradient(135deg, #0056b3 0%, var(--primary) 100%);
+      }
+
+      .signup-cta-button {
+        background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+        color: white;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+        border: 2px solid rgba(37, 99, 235, 0.5);
+      }
+
+      .signup-cta-button::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.6s;
+      }
+
+      .signup-cta-button:hover::before {
+        left: 100%;
+      }
+
+      .signup-cta-button:hover {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 12px 35px rgba(37, 99, 235, 0.5);
+        background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
+        border-color: rgba(37, 99, 235, 0.8);
+      }
+    </style>
+  </head>
+  <body class="bg-white text-black font-sans">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white shadow-lg z-50 border-b border-gray-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <div class="flex items-center">
+            <h1 class="text-2xl font-bold text-[var(--primary)]">AdCraft AI</h1>
+          </div>
+          <div class="hidden md:block">
+            <div class="ml-10 flex items-baseline space-x-4">
+              <a
+                href="#features"
+                class="text-gray-700 hover:text-[var(--primary)] px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                >Features</a
+              >
+              <a
+                href="#demo"
+                class="text-gray-700 hover:text-[var(--primary)] px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                >Demo</a
+              >
+              <a
+                href="#pricing"
+                class="text-gray-700 hover:text-[var(--primary)] px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                >Pricing</a
+              >
+              <a
+                href="#contact"
+                class="text-gray-700 hover:text-[var(--primary)] px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                >Contact</a
+              >
+            </div>
+          </div>
+          <div class="flex items-center space-x-4">
+            <a
+              href="#signup"
+              class="bg-[var(--primary)] text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-600 transition-colors"
+              >Get Started</a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+      class="min-h-screen flex flex-col justify-center items-center hero-gradient text-white px-6 text-center relative overflow-hidden"
+    >
+      <div class="absolute inset-0 bg-black/20"></div>
+      <div class="relative z-10 max-w-4xl mx-auto">
+        <h1 class="text-5xl md:text-7xl font-bold mb-6">
+          <span class="typing-animation">AI-Powered</span><br />
+          Meta Ads Creation
+        </h1>
+        <p class="text-xl md:text-2xl max-w-3xl mx-auto mb-8 text-gray-100">
+          Launch AI-generated Meta ad campaigns and landing pages in seconds.
+          Describe your ad, upload creative, and go live — all from your phone.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="#demo"
+            class="px-8 py-4 bg-white/20 backdrop-blur-sm text-white border-2 border-white/30 rounded-lg text-lg font-semibold hover:bg-white/30 transition-all shadow-lg"
+          >
+            <i class="fas fa-play mr-2"></i>Try Demo
+          </a>
+          <a
+            href="#signup"
+            class="px-8 py-4 hero-cta-button text-white rounded-lg text-lg font-semibold border-2 border-white shadow-lg pulse-animation"
+          >
+            <i class="fas fa-rocket mr-2"></i>Start Free Trial
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Demo Section -->
+    <section id="demo" class="py-20 bg-white px-6">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl font-bold text-center mb-12 text-[var(--text)]">
+          See AdCraft AI in Action
+        </h2>
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div class="space-y-6">
+            <h3 class="text-2xl font-semibold text-[var(--primary)] mb-4">
+              Describe Your Campaign
+            </h3>
+            <div class="space-y-4">
+              <textarea
+                id="demoInput"
+                class="w-full p-4 demo-input rounded-lg resize-none h-32 text-lg"
+                placeholder="Example: Create a Meta ad for my MMA gym targeting men aged 18-35 in Europe, budget $15/day for 2 weeks, objective is lead generation"
+              ></textarea>
+              <button
+                onclick="generateDemo()"
+                class="w-full bg-[var(--primary)] text-white py-3 rounded-lg font-semibold hover:bg-blue-600 transition-colors"
+              >
+                <i class="fas fa-magic mr-2"></i>Generate Campaign
+              </button>
+            </div>
+          </div>
+          <div class="bg-[var(--surface)] p-8 rounded-xl">
+            <h4 class="text-xl font-semibold mb-4 text-[var(--primary)]">
+              Generated Campaign Settings
+            </h4>
+            <div id="demoOutput" class="space-y-4 text-sm">
+              <div class="bg-white p-4 rounded-lg">
+                <strong>Audience:</strong> Men, 18-35, Europe
+              </div>
+              <div class="bg-white p-4 rounded-lg">
+                <strong>Budget:</strong> $15/day for 14 days
+              </div>
+              <div class="bg-white p-4 rounded-lg">
+                <strong>Objective:</strong> Lead Generation
+              </div>
+              <div class="bg-white p-4 rounded-lg">
+                <strong>Ad Copy:</strong> "Transform your life with MMA
+                training. Join our elite gym today!"
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-[var(--surface)] px-6">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl font-bold text-center mb-16 text-[var(--text)]">
+          Powerful Features for Modern Marketers
+        </h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-white p-8 rounded-xl shadow-lg card-hover">
+            <div class="feature-icon">
+              <i class="fas fa-brain"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-4 text-[var(--primary)]">
+              Natural Language Processing
+            </h3>
+            <p class="text-[var(--text-secondary)] mb-4">
+              Describe your campaign in plain English. Our AI understands
+              context and generates optimal targeting, copy, and settings.
+            </p>
+            <ul class="text-sm text-[var(--text-secondary)] space-y-2">
+              <li>
+                <i class="fas fa-check text-[var(--success)] mr-2"></i>Audience
+                targeting
+              </li>
+              <li>
+                <i class="fas fa-check text-[var(--success)] mr-2"></i>Budget
+                optimization
+              </li>
+              <li>
+                <i class="fas fa-check text-[var(--success)] mr-2"></i>Ad copy
+                generation
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-white p-8 rounded-xl shadow-lg card-hover">
+            <div class="feature-icon">
+              <i class="fas fa-upload"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-4 text-[var(--primary)]">
+              Creative Upload & Preview
+            </h3>
+            <p class="text-[var(--text-secondary)] mb-4">
+              Upload your images or videos and preview how they'll look in the
+              actual ad before publishing.
+            </p>
+            <ul class="text-sm text-[var(--text-secondary)] space-y-2">
+              <li>
+                <i class="fas fa-check text-[var(--success)] mr-2"></i>Image &
+                video support
+              </li>
+              <li>
+                <i class="fas fa-check text-[var(--success)] mr-2"></i>Real-time
+                preview
+              </li>
+              <li>
+                <i class="fas fa-check text-[var(--success)] mr-2"></i>Format
+                validation
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-white p-8 rounded-xl shadow-lg card-hover">
+            <div class="feature-icon">
+              <i class="fas fa-globe"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-4 text-[var(--primary)]">
+              Instant Landing Pages
+            </h3>
+            <p class="text-[var(--text-secondary)] mb-4">
+              AI generates branded landing pages with lead forms automatically
+              tailored to your campaign.
+            </p>
+            <ul class="text-sm text-[var(--text-secondary)] space-y-2">
+              <li>
+                <i class="fas fa-check text-[var(--success)] mr-2"></i>Branded
+                design
+              </li>
+              <li>
+                <i class="fas fa-check text-[var(--success)] mr-2"></i>Lead
+                capture forms
+              </li>
+              <li>
+                <i class="fas fa-check text-[var(--success)] mr-2"></i>Mobile
+                optimized
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-white p-8 rounded-xl shadow-lg card-hover">
+            <div class="feature-icon">
+              <i class="fas fa-rocket"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-4 text-[var(--primary)]">
+              One-Click Publishing
+            </h3>
+            <p class="text-[var(--text-secondary)] mb-4">
+              Review and edit generated settings, then launch directly to Meta
+              Ads with a single click.
+            </p>
+            <ul class="text-sm text-[var(--text-secondary)] space-y-2">
+              <li>
+                <i class="fas fa-check text-[var(--success)] mr-2"></i>Meta API
+                integration
+              </li>
+              <li>
+                <i class="fas fa-check text-[var(--success)] mr-2"></i>Instant
+                deployment
+              </li>
+              <li>
+                <i class="fas fa-check text-[var(--success)] mr-2"></i>Campaign
+                monitoring
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-white p-8 rounded-xl shadow-lg card-hover">
+            <div class="feature-icon">
+              <i class="fas fa-mobile-alt"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-4 text-[var(--primary)]">
+              Mobile-First Design
+            </h3>
+            <p class="text-[var(--text-secondary)] mb-4">
+              Create and manage campaigns from anywhere. Optimized for mobile
+              devices and tablets.
+            </p>
+            <ul class="text-sm text-[var(--text-secondary)] space-y-2">
+              <li>
+                <i class="fas fa-check text-[var(--success)] mr-2"></i
+                >Responsive interface
+              </li>
+              <li>
+                <i class="fas fa-check text-[var(--success)] mr-2"></i
+                >Touch-friendly
+              </li>
+              <li>
+                <i class="fas fa-check text-[var(--success)] mr-2"></i>Offline
+                capability
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-white p-8 rounded-xl shadow-lg card-hover">
+            <div class="feature-icon">
+              <i class="fas fa-chart-line"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-4 text-[var(--primary)]">
+              Performance Analytics
+            </h3>
+            <p class="text-[var(--text-secondary)] mb-4">
+              Track campaign performance with real-time analytics and AI-powered
+              optimization suggestions.
+            </p>
+            <ul class="text-sm text-[var(--text-secondary)] space-y-2">
+              <li>
+                <i class="fas fa-check text-[var(--success)] mr-2"></i>Real-time
+                metrics
+              </li>
+              <li>
+                <i class="fas fa-check text-[var(--success)] mr-2"></i>AI
+                optimization
+              </li>
+              <li>
+                <i class="fas fa-check text-[var(--success)] mr-2"></i>ROI
+                tracking
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section class="py-20 bg-white px-6">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl font-bold text-center mb-16 text-[var(--text)]">
+          Perfect For Every Business Type
+        </h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div class="text-center p-6">
+            <div
+              class="w-16 h-16 bg-[var(--primary)] rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <i class="fas fa-dumbbell text-white text-xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2 text-[var(--primary)]">
+              Fitness Studios
+            </h3>
+            <p class="text-[var(--text-secondary)]">
+              Target local fitness enthusiasts with personalized ads and lead
+              capture forms.
+            </p>
+          </div>
+
+          <div class="text-center p-6">
+            <div
+              class="w-16 h-16 bg-[var(--secondary)] rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <i class="fas fa-shopping-bag text-white text-xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2 text-[var(--secondary)]">
+              E-commerce
+            </h3>
+            <p class="text-[var(--text-secondary)]">
+              Drive sales with product-specific ads and optimized landing pages.
+            </p>
+          </div>
+
+          <div class="text-center p-6">
+            <div
+              class="w-16 h-16 bg-[var(--success)] rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <i class="fas fa-user text-white text-xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2 text-[var(--success)]">
+              Content Creators
+            </h3>
+            <p class="text-[var(--text-secondary)]">
+              Promote your content and grow your audience with targeted
+              campaigns.
+            </p>
+          </div>
+
+          <div class="text-center p-6">
+            <div
+              class="w-16 h-16 bg-[var(--warning)] rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <i class="fas fa-building text-white text-xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-2 text-[var(--warning)]">
+              Agencies
+            </h3>
+            <p class="text-[var(--text-secondary)]">
+              Scale your ad operations and serve more clients efficiently.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 bg-[var(--surface)] px-6">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl font-bold text-center mb-16 text-[var(--text)]">
+          Simple, Transparent Pricing
+        </h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="bg-white p-8 rounded-xl shadow-lg">
+            <div class="text-center mb-8">
+              <h3 class="text-2xl font-semibold text-[var(--primary)] mb-2">
+                Starter
+              </h3>
+              <div class="text-4xl font-bold text-[var(--text)] mb-2">
+                $29<span class="text-lg text-[var(--text-secondary)]"
+                  >/month</span
+                >
+              </div>
+              <p class="text-[var(--text-secondary)]">
+                Perfect for small businesses
+              </p>
+            </div>
+            <ul class="space-y-4 mb-8">
+              <li class="flex items-center">
+                <i class="fas fa-check text-[var(--success)] mr-3"></i>5
+                campaigns per month
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check text-[var(--success)] mr-3"></i>Basic
+                landing pages
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check text-[var(--success)] mr-3"></i>Email
+                support
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check text-[var(--success)] mr-3"></i>Mobile
+                app access
+              </li>
+            </ul>
+            <a
+              href="#signup"
+              class="w-full pricing-cta-button text-white py-3 rounded-lg font-semibold block text-center"
+              >Start Free Trial</a
+            >
+          </div>
+
+          <div
+            class="bg-white p-8 rounded-xl shadow-lg border-2 border-[var(--primary)] relative"
+          >
+            <div
+              class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-[var(--primary)] text-white px-4 py-1 rounded-full text-sm font-semibold"
+            >
+              Most Popular
+            </div>
+            <div class="text-center mb-8">
+              <h3 class="text-2xl font-semibold text-[var(--primary)] mb-2">
+                Professional
+              </h3>
+              <div class="text-4xl font-bold text-[var(--text)] mb-2">
+                $79<span class="text-lg text-[var(--text-secondary)]"
+                  >/month</span
+                >
+              </div>
+              <p class="text-[var(--text-secondary)]">For growing businesses</p>
+            </div>
+            <ul class="space-y-4 mb-8">
+              <li class="flex items-center">
+                <i class="fas fa-check text-[var(--success)] mr-3"></i>25
+                campaigns per month
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check text-[var(--success)] mr-3"></i>Advanced
+                landing pages
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check text-[var(--success)] mr-3"></i>Priority
+                support
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check text-[var(--success)] mr-3"></i>Analytics
+                dashboard
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check text-[var(--success)] mr-3"></i>Team
+                collaboration
+              </li>
+            </ul>
+            <a
+              href="#signup"
+              class="w-full pricing-cta-button text-white py-3 rounded-lg font-semibold block text-center"
+              >Start Free Trial</a
+            >
+          </div>
+
+          <div class="bg-white p-8 rounded-xl shadow-lg">
+            <div class="text-center mb-8">
+              <h3 class="text-2xl font-semibold text-[var(--primary)] mb-2">
+                Enterprise
+              </h3>
+              <div class="text-4xl font-bold text-[var(--text)] mb-2">
+                $199<span class="text-lg text-[var(--text-secondary)]"
+                  >/month</span
+                >
+              </div>
+              <p class="text-[var(--text-secondary)]">
+                For agencies & large teams
+              </p>
+            </div>
+            <ul class="space-y-4 mb-8">
+              <li class="flex items-center">
+                <i class="fas fa-check text-[var(--success)] mr-3"></i>Unlimited
+                campaigns
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check text-[var(--success)] mr-3"></i>Custom
+                landing pages
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check text-[var(--success)] mr-3"></i>24/7
+                support
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check text-[var(--success)] mr-3"></i>Advanced
+                analytics
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check text-[var(--success)] mr-3"></i>API
+                access
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check text-[var(--success)] mr-3"></i
+                >White-label options
+              </li>
+            </ul>
+            <a
+              href="#signup"
+              class="w-full pricing-cta-button text-white py-3 rounded-lg font-semibold block text-center"
+              >Contact Sales</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Signup Section -->
+    <section id="signup" class="py-20 bg-gradient-bg text-white px-6 relative overflow-hidden">
+      <!-- Animated background elements -->
+      <div class="absolute inset-0">
+        <div class="absolute top-10 left-10 w-20 h-20 bg-white/10 rounded-full animate-pulse"></div>
+        <div class="absolute top-32 right-20 w-16 h-16 bg-white/10 rounded-full animate-pulse" style="animation-delay: 1s;"></div>
+        <div class="absolute bottom-20 left-1/4 w-12 h-12 bg-white/10 rounded-full animate-pulse" style="animation-delay: 2s;"></div>
+      </div>
+      
+      <div class="max-w-4xl mx-auto text-center relative z-10">
+        <div class="mb-8">
+          <span class="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium text-[var(--text)] border border-white/30">
+            <i class="fas fa-star text-yellow-300 mr-2"></i>
+            Trusted by 10,000+ businesses worldwide
+          </span>
+        </div>
+        <h2 class="text-4xl  text-[var(--text)] md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-gray-200 bg-clip-text ">
+          Ready to Transform Your Advertising?
+        </h2>
+        
+        <p class="text-xl md:text-2xl mb-6 text-[var(--text)] leading-relaxed">
+          Join <span class="font-bold text-[var(--primary)]">thousands of businesses</span> already using AdCraft AI to create
+          <span class="font-semibold text-yellow-500">high-performing Meta ad campaigns</span> in minutes, not hours.
+        </p>
+        <!-- Social proof stats -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 max-w-3xl mx-auto">
+          <div class="bg-white/70 backdrop-blur-sm rounded-lg p-4 border border-white/20">
+            <div class="text-2xl font-bold text-[var(--primary)]">10,000+</div>
+            <div class="text-sm text-[var(--text-secondary)]">Active Users</div>
+          </div>
+          <div class="bg-white/70 backdrop-blur-sm rounded-lg p-4 border border-white/20">
+            <div class="text-2xl font-bold text-[var(--primary)]">$2.5M+</div>
+            <div class="text-sm text-[var(--text-secondary)]">Revenue Generated</div>
+          </div>
+          <div class="bg-white/70 backdrop-blur-sm rounded-lg p-4 border border-white/20">
+            <div class="text-2xl font-bold text-[var(--primary)]">98%</div>
+            <div class="text-sm text-[var(--text-secondary)]">Success Rate</div>
+          </div>
+        </div>
+        
+        <div
+          class="bg-white/95 backdrop-blur-xl p-8 rounded-xl max-w-2xl mx-auto border border-white/50 "
+        >
+          <form class="space-y-6">
+            <div class="grid md:grid-cols-2 gap-4">
+              <div class="relative">
+                <i class="fas fa-user absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
+                <input
+                  type="text"
+                  placeholder="First Name"
+                  class="w-full pl-12 pr-4 py-4 rounded-lg bg-white/80 border border-gray-300 text-gray-900 placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all"
+                />
+              </div>
+              <div class="relative">
+                <i class="fas fa-user absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
+                <input
+                  type="text"
+                  placeholder="Last Name"
+                  class="w-full pl-12 pr-4 py-4 rounded-lg bg-white/80 border border-gray-300 text-gray-900 placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all"
+                />
+              </div>
+            </div>
+            <div class="relative">
+              <i class="fas fa-envelope absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
+              <input
+                type="email"
+                placeholder="Email Address"
+                class="w-full pl-12 pr-4 py-4 rounded-lg bg-white/80 border border-gray-300 text-gray-900 placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all"
+              />
+            </div>
+            <div class="relative">
+              <i class="fas fa-building absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
+              <input
+                type="text"
+                placeholder="Company Name"
+                class="w-full pl-12 pr-4 py-4 rounded-lg bg-white/80 border border-gray-300 text-gray-900 placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all"
+              />
+            </div>
+            <div class="relative">
+              <i class="fas fa-crown absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
+              <select
+                class="w-full pl-12 pr-4 py-4 rounded-lg bg-white/80 border border-gray-300 text-gray-900 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all"
+              >
+                <option value="" class="text-gray-900 bg-white">Select Plan</option>
+                <option value="starter" class="text-gray-900 bg-white">
+                  Starter - $29/month
+                </option>
+                <option value="professional" class="text-gray-900 bg-white">
+                  Professional - $79/month
+                </option>
+                <option value="enterprise" class="text-gray-900 bg-white">
+                  Enterprise - $199/month
+                </option>
+              </select>
+            </div>
+            <button
+              type="submit"
+              class="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white py-4 rounded-lg font-semibold text-lg shadow-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-500/30"
+            >
+              <i class="fas fa-rocket mr-2"></i>Start Your Free Trial
+            </button>
+          </form>
+          
+          <!-- Trust indicators -->
+          <div class="mt-6 space-y-4">
+            <div class="flex items-center justify-center space-x-6 text-sm text-gray-600">
+              <div class="flex items-center">
+                <i class="fas fa-shield-alt text-green-500 mr-2"></i>
+                <span>SSL Secured</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fas fa-lock text-green-500 mr-2"></i>
+                <span>Privacy Protected</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fas fa-clock text-green-500 mr-2"></i>
+                <span>Instant Access</span>
+              </div>
+            </div>
+            <p class="text-sm text-gray-600 text-center">
+              No credit card required • 14-day free trial • Cancel anytime
+            </p>
+          </div>
+        </div>
+        
+        <!-- Customer testimonials -->
+        <div class="mt-12 grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          <div class="bg-white/90 rounded-lg p-6 border border-gray-200 shadow">
+            <div class="flex items-center mb-4">
+              <div class="w-10 h-10 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full flex items-center justify-center text-white font-bold mr-3">S</div>
+              <div>
+                <div class="font-semibold text-gray-900">Sarah Chen</div>
+                <div class="text-sm text-gray-600">Marketing Director</div>
+              </div>
+            </div>
+            <p class="text-gray-800 text-base">"AdCraft AI cut our campaign creation time by 80%. ROI increased 3x in the first month!"</p>
+            <div class="flex text-yellow-400 mt-3">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+          
+          <div class="bg-white/90 rounded-lg p-6 border border-gray-200 shadow">
+            <div class="flex items-center mb-4">
+              <div class="w-10 h-10 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center text-white font-bold mr-3">M</div>
+              <div>
+                <div class="font-semibold text-gray-900">Mike Rodriguez</div>
+                <div class="text-sm text-gray-600">E-commerce Owner</div>
+              </div>
+            </div>
+            <p class="text-gray-800 text-base">"The AI-generated landing pages are incredible. Our conversion rate jumped 45%!"</p>
+            <div class="flex text-yellow-400 mt-3">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+          
+          <div class="bg-white/90 rounded-lg p-6 border border-gray-200 shadow">
+            <div class="flex items-center mb-4">
+              <div class="w-10 h-10 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full flex items-center justify-center text-white font-bold mr-3">A</div>
+              <div>
+                <div class="font-semibold text-gray-900">Alex Thompson</div>
+                <div class="text-sm text-gray-600">Agency Founder</div>
+              </div>
+            </div>
+            <p class="text-gray-800 text-base">"We can now serve 5x more clients with the same team. Game changer for our agency!"</p>
+            <div class="flex text-yellow-400 mt-3">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white px-6">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl font-bold text-center mb-16 text-[var(--text)]">
+          Get in Touch
+        </h2>
+        <div class="grid md:grid-cols-2 gap-12">
+          <div>
+            <h3 class="text-2xl font-semibold mb-6 text-[var(--primary)]">
+              Let's Talk
+            </h3>
+            <p class="text-[var(--text-secondary)] mb-8">
+              Have questions about AdCraft AI? Our team is here to help you get
+              started and make the most of our platform.
+            </p>
+            <div class="space-y-4">
+              <div class="flex items-center">
+                <i
+                  class="fas fa-envelope text-[var(--primary)] mr-4 text-xl"
+                ></i>
+                <span>hello@adcraft.ai</span>
+              </div>
+              <div class="flex items-center">
+                <i class="fas fa-phone text-[var(--primary)] mr-4 text-xl"></i>
+                <span>+1 (555) 123-4567</span>
+              </div>
+              <div class="flex items-center">
+                <i
+                  class="fas fa-map-marker-alt text-[var(--primary)] mr-4 text-xl"
+                ></i>
+                <span>San Francisco, CA</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <form class="space-y-4">
+              <input
+                type="text"
+                placeholder="Your Name"
+                class="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:border-[var(--primary)]"
+              />
+              <input
+                type="email"
+                placeholder="Your Email"
+                class="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:border-[var(--primary)]"
+              />
+              <textarea
+                placeholder="Your Message"
+                rows="4"
+                class="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:border-[var(--primary)] resize-none"
+              ></textarea>
+              <button
+                type="submit"
+                class="bg-[var(--primary)] text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-600 transition-all shadow-lg border border-[var(--primary)]/20"
+              >
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[var(--surface)] py-12 px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid md:grid-cols-4 gap-8 mb-8">
+          <div>
+            <h3 class="text-2xl font-bold text-[var(--primary)] mb-4">
+              AdCraft AI
+            </h3>
+            <p class="text-[var(--text-secondary)]">
+              AI-powered Meta ads campaign creation for modern businesses.
+            </p>
+          </div>
+          <div>
+            <h4 class="font-semibold mb-4">Product</h4>
+            <ul class="space-y-2 text-[var(--text-secondary)]">
+              <li>
+                <a href="#features" class="hover:text-[var(--primary)]"
+                  >Features</a
+                >
+              </li>
+              <li>
+                <a href="#pricing" class="hover:text-[var(--primary)]"
+                  >Pricing</a
+                >
+              </li>
+              <li>
+                <a href="#demo" class="hover:text-[var(--primary)]">Demo</a>
+              </li>
+              <li><a href="#" class="hover:text-[var(--primary)]">API</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold mb-4">Company</h4>
+            <ul class="space-y-2 text-[var(--text-secondary)]">
+              <li><a href="#" class="hover:text-[var(--primary)]">About</a></li>
+              <li><a href="#" class="hover:text-[var(--primary)]">Blog</a></li>
+              <li>
+                <a href="#" class="hover:text-[var(--primary)]">Careers</a>
+              </li>
+              <li>
+                <a href="#contact" class="hover:text-[var(--primary)]"
+                  >Contact</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold mb-4">Support</h4>
+            <ul class="space-y-2 text-[var(--text-secondary)]">
+              <li>
+                <a href="#" class="hover:text-[var(--primary)]">Help Center</a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-[var(--primary)]"
+                  >Documentation</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-[var(--primary)]">Status</a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-[var(--primary)]">Community</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center"
+        >
+          <p class="text-[var(--text-secondary)]">
+            &copy; 2025 AdCraft AI. All rights reserved.
+          </p>
+          <div class="flex space-x-4 mt-4 md:mt-0">
+            <a
+              href="#"
+              class="text-[var(--text-secondary)] hover:text-[var(--primary)]"
+              ><i class="fab fa-twitter"></i
+            ></a>
+            <a
+              href="#"
+              class="text-[var(--text-secondary)] hover:text-[var(--primary)]"
+              ><i class="fab fa-linkedin"></i
+            ></a>
+            <a
+              href="#"
+              class="text-[var(--text-secondary)] hover:text-[var(--primary)]"
+              ><i class="fab fa-github"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      function generateDemo() {
+        const input = document.getElementById("demoInput").value;
+        const output = document.getElementById("demoOutput");
+
+        if (input.trim() === "") {
+          alert("Please enter a campaign description first!");
+          return;
+        }
+
+        // Simulate AI processing
+        output.innerHTML = `
+                    <div class="bg-white/80 backdrop-blur-sm p-4 rounded-lg border border-[var(--primary)]/10 shadow-sm">
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-users text-[var(--primary)] mr-2"></i>
+                            <strong class="text-[var(--primary)]">Audience:</strong>
+                        </div>
+                        <p class="text-gray-700">Men, 18-35, Europe</p>
+                    </div>
+                    <div class="bg-white/80 backdrop-blur-sm p-4 rounded-lg border border-[var(--primary)]/10 shadow-sm">
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-dollar-sign text-[var(--primary)] mr-2"></i>
+                            <strong class="text-[var(--primary)]">Budget:</strong>
+                        </div>
+                        <p class="text-gray-700">$15/day for 14 days</p>
+                    </div>
+                    <div class="bg-white/80 backdrop-blur-sm p-4 rounded-lg border border-[var(--primary)]/10 shadow-sm">
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-bullseye text-[var(--primary)] mr-2"></i>
+                            <strong class="text-[var(--primary)]">Objective:</strong>
+                        </div>
+                        <p class="text-gray-700">Lead Generation</p>
+                    </div>
+                    <div class="bg-white/80 backdrop-blur-sm p-4 rounded-lg border border-[var(--primary)]/10 shadow-sm">
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-pen text-[var(--primary)] mr-2"></i>
+                            <strong class="text-[var(--primary)]">Ad Copy:</strong>
+                        </div>
+                        <p class="text-gray-700">"Transform your life with MMA training. Join our elite gym today!"</p>
+                    </div>
+                    <div class="bg-white/80 backdrop-blur-sm p-4 rounded-lg border border-[var(--primary)]/10 shadow-sm">
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-globe text-[var(--primary)] mr-2"></i>
+                            <strong class="text-[var(--primary)]">Landing Page:</strong>
+                        </div>
+                        <p class="text-gray-700">Auto-generated with lead form</p>
+                    </div>
+                `;
+
+        // Add success animation
+        output.style.animation = "fadeIn 0.5s ease-in";
+      }
+
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Add fade-in animation
+      const style = document.createElement("style");
+      style.textContent = `
+                @keyframes fadeIn {
+                    from { opacity: 0; transform: translateY(10px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+            `;
+      document.head.appendChild(style);
+    </script>
+  </body>
+</html>
