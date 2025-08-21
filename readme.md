@@ -1,10 +1,10 @@
-# AdCraft. AI
+# AdsForge. AI
 
-## 🧠 Startup Name: _AdCraft AI_ (placeholder, can be renamed)
+## 🧠 Startup Name: _AdsForge AI_ (placeholder, can be renamed)
 
 ### 🚀 MVP Startup Description
 
-**AdCraft AI** is an AI-powered platform that simplifies Meta Ads campaign creation through natural language input. Our MVP enables users—especially small businesses, creators, and marketers—to launch ad campaigns by simply uploading their ad creative and describing their intent in plain English.
+**AdsForge AI** is an AI-powered platform that simplifies Meta Ads campaign creation through natural language input. Our MVP enables users—especially small businesses, creators, and marketers—to launch ad campaigns by simply uploading their ad creative and describing their intent in plain English.
 
 Instead of manually configuring dozens of ad settings in Meta Ads Manager, users describe what they want—like audience, location, budget, languages, and goals—and our AI turns that into a complete campaign setup.
 
